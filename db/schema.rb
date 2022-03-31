@@ -10,9 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_03_19_154351) do
+ActiveRecord::Schema[7.0].define(version: 2022_03_29_012221) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "step_executions", force: :cascade do |t|
+    t.string "resource_type"
+    t.string "resource_id"
+    t.string "orchestrator_class"
+    t.string "saga_name"
+    t.string "step_name"
+    t.string "status", default: "started"
+    t.text "input"
+    t.text "result"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "first_name"
